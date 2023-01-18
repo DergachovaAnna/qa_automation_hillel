@@ -18,3 +18,13 @@ alcohol_blacklist = {"Master Yoda", "Luke Skywalker", "Leia Organa", "Obi Wan Ke
 
 total_blacklist = casino_blacklist.intersection(poker_blacklist, alcohol_blacklist)
 print(total_blacklist)
+
+# You have two groups of people. One group consists of omnivores, the other only vegetarians.
+# An omnivore is a vegetarian but a vegetarian is not an omnivore.
+# Display a list of guests who can eat vegetables and herbs.
+
+omnivore = {"James", "Sirius", "Garry"}
+vegetarians = {"Luna", "Ron", "Hermione", "Petunia"}
+who_can_eat_herbs = vegetarians.union(omnivore)
+print(who_can_eat_herbs)
+
