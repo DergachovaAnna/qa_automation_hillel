@@ -37,3 +37,19 @@ my_seats = {
     "vip_seats": {1: "occupied", 2: "occupied", 3: "occupied", 4: "occupied"},
     "common_seats": {1: "occupied", 2: None, 3: None, 4: None}
 }
+
+
+# TASK 6: You have a group of people with non-unique names.
+# Generate a list of non-duplicate names (you cannot use set for this task).
+# If there are 2 johns in the list, you need to take only one of them.
+# "John Dow", "John Dow", "Marta Dow" => "John Dow", "Marta Dow "
+
+mixed_list = ["Maggy Smith", "John Doe", "John Doe", "Jane Smith", "Maggy Smith", "Bill Johns", "Amely Doe"]
+unique_list = []
+
+for name in mixed_list:
+    if name in unique_list:
+        continue
+    else:
+        unique_list.append(name)
+print(unique_list)
