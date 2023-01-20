@@ -54,5 +54,3 @@ mixed_list = ["Maggy Smith", "John Doe", "John Doe", "Jane Smith", "Maggy Smith"
 
 unique_list = list(dict.fromkeys(mixed_list))
 print(unique_list)
-
-
