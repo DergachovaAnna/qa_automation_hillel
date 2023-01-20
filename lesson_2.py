@@ -4,9 +4,10 @@
 toshiba_personnel = ["Ann", "Mary", "Jim", "Ashley", "Garry", "James"]
 eleks_personnel = ["Margo", "Andrey", "Billy", "James", "Ann"]
 
-new_company_list = toshiba_personnel.copy()
-new_company_list.extend(eleks_personnel)
-print(new_company_list)
+toshiba_personnel.extend(eleks_personnel)
+eleks_personnel.clear()
+print(toshiba_personnel)
+print(eleks_personnel)
 
 # TASK 3: You have 3 groups of people casino_blacklist, poker_blacklist, alcohol_blacklist.
 # Names of people in the format "John Dow" first and second name. Find those who are on all blacklists.
@@ -14,7 +15,6 @@ print(new_company_list)
 casino_blacklist = {"Han Solo", "Master Yoda", "Obi Wan Kenobi", "R2-D2", "Luke Skywalker"}
 poker_blacklist = {"Graf Dooku", "Leia Organa", "Obi Wan Kenobi", "Luke Skywalker"}
 alcohol_blacklist = {"Master Yoda", "Luke Skywalker", "Leia Organa", "Obi Wan Kenobi"}
-
 
 total_blacklist = casino_blacklist.intersection(poker_blacklist, alcohol_blacklist)
 print(total_blacklist)
@@ -38,18 +38,21 @@ my_seats = {
     "common_seats": {1: "occupied", 2: None, 3: None, 4: None}
 }
 
-
 # TASK 6: You have a group of people with non-unique names.
 # Generate a list of non-duplicate names (you cannot use set for this task).
 # If there are 2 johns in the list, you need to take only one of them.
 # "John Dow", "John Dow", "Marta Dow" => "John Dow", "Marta Dow "
 
 mixed_list = ["Maggy Smith", "John Doe", "John Doe", "Jane Smith", "Maggy Smith", "Bill Johns", "Amely Doe"]
-unique_list = []
 
-for name in mixed_list:
-    if name in unique_list:
-        continue
-    else:
-        unique_list.append(name)
+# for name in mixed_list:
+#     if name in unique_list:
+#         continue
+#     else:
+#         unique_list.append(name)
+# print(unique_list)
+
+unique_list = list(dict.fromkeys(mixed_list))
 print(unique_list)
+
+
