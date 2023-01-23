@@ -7,21 +7,20 @@ my_list = [1, 2, 3, 4, 5, 6, 7, 8]
 odds = []
 evens = []
 
-# for number in my_list:
-#     if number % 2 == 0:
-#         evens.append(number)
+# for num in range(0, len(my_list)):
+#     if num % 2 == 0:
+#         evens.append((num, my_list[num]))
 #     else:
-#         odds.append(number)
-# odds = list(enumerate(odds))
-# evens = list(enumerate(evens))
+#         odds.append((num, my_list[num]))
 # print(odds)
 # print(evens)
 
-for num in range(0, len(my_list)):
-    if num % 2 == 0:
-        evens.append((num, my_list[num]))
+for index, value in enumerate(my_list):
+    if value % 2 == 0:
+        evens.append((index, value))
     else:
-        odds.append((num, my_list[num]))
+        odds.append((index, value))
+
 print(odds)
 print(evens)
 
