@@ -1,3 +1,5 @@
+import re
+
 # there is a space-separated string with the names "john peter brian Morgan Adam Maria bart" convert
 # the string so that each name starts with a capital letter.
 
@@ -11,6 +13,25 @@ print(my_string.title())
 
 my_list = ["John", "Marta", "James", "Amanda", "Marianna"]
 header = 'Names'
+
 print(header.center(15, '*'))
-for i in range(0, len(my_list)):
-    print(f"{my_list[i] : >10}")
+for name in range(len(my_list)):
+    print(f"{my_list[name] : >10}")
+
+
+#there is a string " name=Amanda=sssss&age=32&&salary=1500&currency=euro ".
+#Convert this string to a dictionary {name: Amanda, age: 32, salary: 1500, currency: quro}
+
+my_string = " name=Amanda=sssss&age=32&&salary=1500&currency=euro "
+
+
+result = re.findall(r'name|Amanda|age|32|salary|1500|currency|euro', my_string)
+my_dict = dict(zip(result[::2], result[1::2]))
+print(my_dict)
+
+
+
+
+
+
+
