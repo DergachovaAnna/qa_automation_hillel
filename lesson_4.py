@@ -6,10 +6,10 @@ import re
 my_string = "john peter brian Morgan Adam Maria bart"
 print(my_string.title())
 
-#there is a list of friends ["John", "Marta", "James", "Amanda", "Marianna"]. print to the console
-#the names of each on a new line, right-aligned using the string method and formatting via f string.
-#Also, above the names, in the first line, display the headings Names where the word names should
-#be in the middle, and the rest of the space is filled with the symbol "*"
+# there is a list of friends ["John", "Marta", "James", "Amanda", "Marianna"]. print to the console
+# the names of each on a new line, right-aligned using the string method and formatting via f string.
+# Also, above the names, in the first line, display the headings Names where the word names should
+# be in the middle, and the rest of the space is filled with the symbol "*"
 
 my_list = ["John", "Marta", "James", "Amanda", "Marianna"]
 header = 'Names'
@@ -30,8 +30,16 @@ my_dict = dict(zip(result[::2], result[1::2]))
 print(my_dict)
 
 
+# you have a list of variable names in camel case format ["FirstItem", "FriendsList", "MyTuple"] convert it to a list of
+# variable names for python in snake case format ["first_item", "friends_list", "my_tuple"]
 
 
+my_list = ["FirstItem", "FriendsList", "MyTuple"]
+my_list_2 = []
 
 
+for item in my_list:
+    my_list_2.append(re.sub(r'(?<!^)(?=[A-Z])', '_', item).lower())
+
+print(my_list_2)
 
