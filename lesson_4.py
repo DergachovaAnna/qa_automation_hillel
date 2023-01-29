@@ -61,6 +61,5 @@ text = "The Hubble.Space.Telescope (often referred to as HST or Hubble) is a spa
 new_text = text.replace('.A', '. A')
 list_of_sentences = new_text.split('.')
 
-for i, text in enumerate(new_text.split('. ')):
-    print(f'[{i+1}]{text}')
-
+for index, text in enumerate(new_text.split('. ')):
+    print(f'[{index+1}]{text}')
