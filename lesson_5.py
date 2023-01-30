@@ -21,39 +21,25 @@ if __name__ == '__main__':
     left_operand = list(random.sample(range(0, 100), 100))
     right_operand = list(random.sample(range(0, 100), 100))
     random_operator = []
-
     for i in range(0, 100):
         random_operator.append(random.randint(1, 3))
-
     data = list(zip(left_operand, right_operand, random_operator))
     print(data)
 
-
-if __name__ == '__main__':
-
-    print(os.getcwd())
-    os.chdir('..')
-    os.makedirs('test/data')
-
-if __name__ == '__main__':
-    print(os.getcwd())
-    os.chdir('./test/data')
-    print(os.getcwd())
     data_bytes = pickle.dumps(data)
     with open('data.txt', 'w+b') as file:
         result = file.write(data_bytes)
 
 
-if __name__ == '__main__':
-    with open('data.txt', 'rb') as file:
-        final_result = pickle.load(file)
-        for x, y, z in final_result:
-            if z == 1:
-                print(x + y)
-            elif z == 2:
-                print(x - y)
-            else:
-                print(x*y)
+with open('data.txt', 'rb') as file:
+    final_result = pickle.load(file)
+    for l_operand, r_operand, operation in final_result:
+        if operation == 1:
+            print(l_operand + r_operand)
+        elif operation == 2:
+            print(l_operand - r_operand)
+        else:
+            print(l_operand*r_operand)
 
 
 # You have the file text.txt(attached). Please count how many times each letter appears in this file.
