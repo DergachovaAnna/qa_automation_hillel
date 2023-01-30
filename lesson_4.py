@@ -15,8 +15,8 @@ my_list = ["John", "Marta", "James", "Amanda", "Marianna"]
 header = 'Names'
 
 print(header.center(15, '*'))
-for name in range(len(my_list)):
-    print(f"{my_list[name] : >10}")
+for name in my_list:
+    print(f"{name : >10}")
 
 
 # there is a string " name=Amanda=sssss&age=32&&salary=1500&currency=euro ".
