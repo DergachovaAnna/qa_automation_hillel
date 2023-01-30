@@ -40,7 +40,15 @@ if __name__ == '__main__':
     with open('data.txt', 'w+b') as file:
         result = file.write(data_bytes)
 
+
 if __name__ == '__main__':
     with open('data.txt', 'rb') as file:
         final_result = pickle.load(file)
-        print(final_result)
+        for x, y, z in final_result:
+            if z == 1:
+                print(x + y)
+            elif z == 2:
+                print(x - y)
+            else:
+                print(x*y)
+
