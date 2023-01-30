@@ -6,12 +6,15 @@
 # identifies the subtraction operation
 # identifies the multiplication operation
 
-# d. You can put data into a text file with the text form or use the pickle module in binary form. If placed as text then each line should contain only elements of one tuple
+
+# d. You can put data into a text file with the text form or use the pickle module in binary form.
+# If placed as text then each line should contain only elements of one tuple
 # separated by spaces (eg "100 2 3"). The file must be created by a script in a pre-created \test\data directory tree.
 # The directory tree must be created by the script. Push only the code to the repository (not directories or file).
 import random
 import os
 import pickle
+from collections import Counter
 
 
 if __name__ == '__main__':
@@ -19,11 +22,11 @@ if __name__ == '__main__':
     right_operand = list(random.sample(range(0, 100), 100))
     random_operator = []
 
-for i in range(0, 100):
-    random_operator.append(random.randint(1, 3))
+    for i in range(0, 100):
+        random_operator.append(random.randint(1, 3))
 
-data = list(zip(left_operand, right_operand, random_operator))
-print(data)
+    data = list(zip(left_operand, right_operand, random_operator))
+    print(data)
 
 
 if __name__ == '__main__':
@@ -52,3 +55,12 @@ if __name__ == '__main__':
             else:
                 print(x*y)
 
+
+# You have the file text.txt(attached). Please count how many times each letter appears in this file.
+
+if __name__ == '__main__':
+    print(os.getcwd())
+    os.chdir('../../Downloads')
+    with open('text.txt', 'r') as file:
+        result = file.read()
+        print(Counter(result))
