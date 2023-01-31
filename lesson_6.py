@@ -2,13 +2,32 @@
 # values (using a tuple): the perimeter of the square, the area of the square,
 # and the diagonal of the square.
 
-def square(square_side: int) -> tuple:
+def square_measurements(square_side: int) -> tuple:
     if square_side <= 0:
-        raise Exception("Sorry, no numbers below or equal to zero")
+        raise Exception("Sorry, no numbers below or equal to zero can be used for the calculation")
     square_perimetr = square_side * 4
     square_area = square_side * square_side
     square_diagonal = (2 ** 0.5) * square_side
     return square_perimetr, square_area, square_diagonal
 
 
-print(square(1))
+if __name__ == '__main__':
+    print(square_measurements(1))
+
+# 3. Write a function is_prime that takes 1 argument -
+# a number from 2 to 1000, and returns True if it is a prime number, and False otherwise.
+
+
+def is_prime(number: int):
+    if number == 1:
+        return False
+    elif number == 2:
+        return True
+    else:
+        for divider in range(2, number):
+            if number % divider == 0:
+                return False
+        return True
+
+
+print(is_prime(72))
