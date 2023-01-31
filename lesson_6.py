@@ -1,6 +1,8 @@
 # 2. Write a function square that takes 1 argument, the side of the square, and returns 3
 # values (using a tuple): the perimeter of the square, the area of the square,
 # and the diagonal of the square.
+import re
+
 
 def square_measurements(square_side: int) -> tuple:
     if square_side <= 0:
@@ -18,7 +20,7 @@ if __name__ == '__main__':
 # a number from 2 to 1000, and returns True if it is a prime number, and False otherwise.
 
 
-def is_prime(number: int):
+def is_prime(number: int) -> bool:
     if number == 1:
         return False
     elif number == 2:
@@ -31,3 +33,18 @@ def is_prime(number: int):
 
 
 print(is_prime(72))
+
+
+# You have a file of unknown length. Write a function that will remove all numbers from each line of the file.
+
+def remove_numbers_from_text(file):
+    """
+    This function will remove all numbers from each line of the file
+    """
+    with open(file, 'r') as file:
+        result = file.read()
+        result_with_no_numbers = re.sub(r'[0-9]+', '', result)
+    return result_with_no_numbers
+
+
+print(remove_numbers_from_text('task_1.py'))
