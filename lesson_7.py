@@ -32,7 +32,7 @@ def my_filter(filter_condition, sequence):
     :return: filtered list
     """
     result = []
-    for item in sequence: # iterate through sequence of items in sequence
+    for item in sequence:  # iterate through sequence of items in sequence
         if filter_condition(item):  # apply filter function
             result.append(item)
     return result
@@ -113,5 +113,14 @@ print(max_int_value((1, 3, 0.9, 88, 1, 0, 100, 1)))
 print(min_str_value('SomE text WITH some letters'))
 
 
+# Implement your own all function
 
-#Implement your own all function
+def check_if_all_in_list(my_list: [list, str], *values) -> bool:
+    for value in values:
+        if value not in my_list:
+            return False
+    return True
+
+
+print(check_if_all_in_list([1, 2, 3], 1, 2, 3, 6))
+print(check_if_all_in_list('any string', 'a'))
