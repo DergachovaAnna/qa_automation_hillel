@@ -80,3 +80,38 @@ def callback(item):
 print(my_map(callback, sequence_3))
 print(my_map(callback, sequence_2))
 print(my_map(callback, sequence_1))
+
+
+# Implement your own implementation of function max and min
+
+def max_int_value(sequence: list):
+    """
+    Function return max value of given numbers list
+    """
+    max_number = sequence[0]  # set as a maximum first value in the given sequence
+    for number in sequence:  # iterate through the sequence, if iterable >= max - replace max value with iterable value
+        if number >= max_number:
+            max_number = number
+    return max_number
+
+
+def min_str_value(sequence: str, key=str.lower):
+    """
+     The function comparing letters of the sequence using the lower() method.
+     It is returning the first letter of the sequence that is lower than the other letters in the sequence.
+    """
+    min_letter = sequence[0]
+    for letter in sequence:
+        if letter == ' ':
+            continue
+        elif key(letter) < key(min_letter):
+            min_letter = letter
+    return min_letter
+
+
+print(max_int_value((1, 3, 0.9, 88, 1, 0, 100, 1)))
+print(min_str_value('SomE text WITH some letters'))
+
+
+
+#Implement your own all function
