@@ -27,5 +27,7 @@ EMOJI = {
     "rabbit": "🐰",
     "raccoon": "🦝",
     "rhinoceros": "🦏",
-    "whale": "🐳"
+    "whale": "🐳",
+    "lion": "🦁",
+    "dont_know": "🤷🏼"
 }

@@ -1,49 +1,57 @@
-from lesson_10.mammals import Mammals
+from lesson_10.mammals import Mammal
+import random
+from emoji import EMOJI
 
+class Theria(Mammal):
+    behaviour = {'p': 'predator', 'h': 'herbivore'}
 
-class Theria (Mammals):
-
-    def __init__(self, name, location):
+    def __init__(self, name: str, location: str, food_habits=None):
         super().__init__(name, location)
-
-    @property
-    def get_animal_list(self):
-        return self.__prototheria_list
-
-    @property
-    def get_location_list(self):
-        return self.__habitat_area
-
-    def introduce_yourself(self):
-        if self.name is not None and self.location is not None:
-            return f"Hi there, I'm a {self.name.lower()} from {self.location.title()} :D"
-        else:
-            return f"I'm sorry, I don't recognize that animal species."
-
-    def eat(self, *foods):
-        for food in foods:
-            if food in Mammals._vegan_food_menu or food in Mammals._meat_food_menu:
-                self.eaten_breakfast.append(food)
+        self.baby = 0
+        self.created = False
+        self.alive = False
+        self.speed = random.randint(1, 100)
+        if food_habits is not None:
+            if food_habits in self.behaviour.keys():
+                self.food_habits = food_habits
+            elif food_habits in self.behaviour.values():
+                self.food_habits = food_habits
             else:
-                self.eaten_breakfast.append(f"unknown {food}")
-                return f"Careful, you feed your {self.name.lower()} with some food, that is not in its menu!"
-        return f"{self.name.title()} is eating {', '.join(self.eaten_breakfast)}."
+                raise ValueError("Invalid food_habits value")
+        else:
+            self.food_habits = None
+
+    def create_animal(self):
+        self.created = True
+        return self.created
+
+    def eat(self):
+        """
+        Eat method to feed the animal
+        """
+        if self.food_habits == 'h' or self.food_habits == 'herbivore':
+            if self.speed < 10:
+                self.created = False
+                return f'{self.name.title()} was too slow to run from predators, it was caught and eaten :(!'
+            else:
+                return f'{self.name.title()} would love to have some {random.choice(Mammal._vegan_food_menu)}!'
+        elif self.food_habits == 'p' or self.food_habits == 'predator':
+            return (
+                f'{self.name.title()} can eat anything, even {random.choice(Mammal._vegan_food_menu)} '
+                f'with {random.choice(Mammal._meat_food_menu)}!')
+        else:
+            return f'Food habits are not set, so we have no idea, ' \
+                   f'what {self.name.title()} may eat..{EMOJI["dont_know"]}'
 
     def give_birth(self):
-        while not self.sleeping:
-            self.eggs += 1
-            return f'Oh, look! {self.name.title()} is laying out an egg! It is total of {self.eggs} egg(s) now..'
+        if self.created and not self.sleeping:
+            self.baby += 1
+            return f'Such a cute baby born! The {self.name} has {self.baby} baby(s) now :)'
         else:
-            return f'Ups, no way - {self.name.title()} is sleeping now.. Try to wake it up first.'
+            return f'Ups, no way - the {self.name.lower()} is either sleeping now, or have not been created yet.. :D'
 
 
 if __name__ == '__main__':
-    animal = Prototheria('PLAtypus', "ausTralia")
-    print(animal.introduce_yourself())
-    print(animal.eat('worms', 'apples', 'burger'))
-    print(animal.eaten_breakfast)
-    print(animal.give_birth())
-    print(animal.sleep())
-    print(animal.move)
-    print(animal.wake_up())
-    print(animal.move)
+    animal = Theria('lion', 'Africa')
+    animal.create_animal()
+    print(animal.eat())

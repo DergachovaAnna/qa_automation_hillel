@@ -1,9 +1,8 @@
-from lesson_10.mammals import Mammals
-from emoji import EMOJI
-import random
+from lesson_10.mammals import Mammal
 
 
-class Prototheria(Mammals):
+class Prototheria(Mammal):
+    """Types of animals belonged to Prototheria are naturally limited by types and habitat areas"""
     __prototheria_list = ['platypus', 'echidna', 'prochidna']
     __habitat_area = ['Australia', 'New Guinea', 'Tasmania']
 
@@ -21,7 +20,6 @@ class Prototheria(Mammals):
         super().__init__(self.name, self.location)
         self.eggs = 0
         self.eaten_breakfast = []
-        self.created = False
 
     @property
     def get_animal_list(self):
@@ -32,33 +30,17 @@ class Prototheria(Mammals):
         return self.__habitat_area
 
     def create_animal(self):
-        """Check if the given animal species and habitat area are valid
+        """
+         Check if the given animal species and habitat area are valid
          If valid, create the animal and set the 'created' flag to True
-         Otherwise, return an error message and set the 'created' flag to False"""
+         Otherwise, return an error message and keep 'created' flag as False
+        """
         if self.name is not None and self.location is not None:
             self.created = True
             return f"Hi there, I'm a {self.name.lower()} from {self.location.title()} :D "
         else:
             self.created = False
             return f"I'm sorry, I don't recognize that animal species or habitat area is wrong."
-
-    @property
-    def move(self):
-        """
-         Move the animal in a random direction with a random distance
-         If the animal is sleeping, return an error message
-         If the animal has not been created yet, return an error message
-        """
-        if self.created:
-            if self.sleeping:
-                return f"{self.name.title()} is sleeping and can't move right now."
-            else:
-                directions = ["north", "south", "east", "west"]
-                distance = random.randint(1, 10)
-                direction = random.choice(directions)
-                return f"{self.name.title()} is moving {distance} units {direction}."
-        else:
-            return f'Please create an animal first or wake it up!'
 
     def eat(self, *foods):
         """
@@ -93,14 +75,6 @@ class Prototheria(Mammals):
         else:
             return f'Please create an animal first or wake it up!'
 
-    @staticmethod
-    def get_picture(name: str):
-        """
-        Get the emoji corresponding to the given animal species name
-        If the name is not found in the dictionary, return a default value
-        """
-        return EMOJI.get(name.lower(), 'Unknown')
-
 
 if __name__ == '__main__':
     animal = Prototheria('platypus', "New Guinea")
@@ -109,11 +83,10 @@ if __name__ == '__main__':
     animal.sleep()
     print(animal.eat())
     animal.wake_up()
-    print(animal.eat('Burger'))
+    print(animal.eat('Mac Burger'))
     print(animal.eaten_breakfast)
-    print(animal.move)
+    print(animal.move())
     animal.sleep()
-    print(animal.move)
+    print(animal.move())
     print(animal.get_picture('boss'))
-
-
+    print(animal.get_animal_list)
