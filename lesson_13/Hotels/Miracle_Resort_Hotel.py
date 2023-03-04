@@ -26,7 +26,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
     def get_rooms_status(self):
         return self.__rooms_status
 
-    # polimorfizm, incapsulation
+    # polimorfizm, encapsulation
     def accept_reservation(self, number_of_rooms: int, name: str):
         """
         Accept a reservation with a given number of rooms and name,
@@ -52,7 +52,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         else:
             return f'We apologise, but reservation can not be accepted - the hotel is fully booked'
 
-    # polimorfizm, incapsulation
+    # polimorfizm, encapsulation
     def confirm_capacity(self):
         """
         Confirms current capacity of the hotel, taking overbooking into account
@@ -63,7 +63,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         else:
             return f'Current capacity: {self.current_capacity} rooms'
 
-    # polimorfizm, incapsulation
+    # polimorfizm, encapsulation
     def check_in(self, number_of_rooms: int):
         """
         Check in to a given number of rooms, selecting random available rooms from the hotel.
@@ -93,7 +93,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         else:
             return 'No available rooms to check in.'
 
-    # polimorfizm, incapsulation
+    # polimorfizm, encapsulation
     def check_out(self, number_of_rooms):
         """
         Check out given number of rooms, selecting random  occuied rooms
@@ -113,7 +113,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         self.cleaning_required = True
         return f'Checked out of {number_of_rooms} rooms.'
 
-    # polimorfizm, incapsulation
+    # polimorfizm, encapsulation
     def refill_fridge(self):
         """
         Function represent HK service fork. Fridge should be refilled after room has been cleaned
@@ -123,7 +123,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         else:
             return "Fridge should be refilled after cleaning"
 
-    # polimorfizm, incapsulation
+    # polimorfizm, encapsulation
     def report_to_reception(self, room_number: int):
         """
         Function represent HK service fork. HK check if room is free and cleaned and reports to reception,
@@ -137,7 +137,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         else:
             return f"Room {room_number} is not yet ready for new guests."
 
-    # polimorfizm, incapsulation
+    # polimorfizm, encapsulation
     def clean_room(self):
         """
         Function represent HK service fork. HK will clean rooms at set hour
