@@ -23,7 +23,8 @@ class AppleCompany:
     def calculate_location_capacity(self):
         """This method calculates the number of vacant positions left in the company's location."""
         left_capacity = AppleCompany.__MAX_EMPLOYEES_CAPACITY - self.__num_employees
-        if self.__location in AppleCompany.__offices_locations.keys():
+        if self.__location in AppleCompany.__offices_locations.keys() or self.__location in \
+                AppleCompany.__offices_locations.values():
             return f'{left_capacity} vacant positions left in {self.__location}'
         else:
             raise ValueError(f'Invalid location. Check that created instances location is from offices_locations dict')
@@ -93,7 +94,10 @@ class AppleCompany:
 
 
 if __name__ == '__main__':
-    office = AppleCompany('USA')
-    print(office.num_employees)
-    office.num_employees = -1
-    print(office.num_employees)
+    from_instance = AppleCompany('USA')
+    print(from_instance.calculate_location_capacity())
+
+    from_class = AppleCompany.get_office_from_country('USA')
+    print(from_class.calculate_location_capacity())
+    print(from_class.get_production_cost('iPad'))
+

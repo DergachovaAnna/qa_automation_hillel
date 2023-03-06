@@ -52,8 +52,12 @@ class Employee:
                 self.__min_salary = min_salary
                 return f"Application accepted!"
             else:
+                self.__position = '"(by default)"'
+                self.__min_salary = '"(by default)"'
                 return f"Sorry, the salary offered for '{position}' position is too low."
         else:
+            self.__position = '"(by default)"'
+            self.__min_salary = '"(by default)"'
             return f'Employees age is not eligible for job application.'
 
     def fire(self):
@@ -87,4 +91,17 @@ class Employee:
 
 
 if __name__ == '__main__':
-    emp1 = Employee('Bob', 38)
+    emp_from_class1 = Employee.create_employee('Bill', 77, 'manager', 100000)
+    print(emp_from_class1)
+
+    emp_from_class2 = Employee.create_employee('Jane', 23, 'manager', 1000000)
+    print(emp_from_class2)
+
+    emp_from_inst1 = Employee('Bill', 77)
+    print(emp_from_inst1.apply_for_job('manager', 100000))
+
+    emp_from_inst2 = Employee('Jane', 23)
+    print(emp_from_inst2.apply_for_job('manager', 100000))
+
+
+
