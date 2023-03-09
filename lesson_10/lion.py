@@ -20,7 +20,7 @@ class Lion(Theria):
                 hunger_level -= 1
                 return f'{self.name.title()} has just hunted a {pray}'
         else:
-            return f'{self.name.title()} is not a predator and cannot hunt for food'
+            return f'{self.name.title()} is not a predator and cannot hunt for food.'
 
 
 if __name__ == '__main__':
