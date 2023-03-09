@@ -15,11 +15,11 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
                       17: "Free", 18: "Free", 19: "Free", 20: "Free"}
 
     def __init__(self):
-        self.capacity = 20
-        self.current_capacity = 0
-        self.free_rooms = None
-        self.overbooking = False
-        self.cleaning_required = False
+        self.__capacity = 20
+        self.__current_capacity = 0
+        self.__free_rooms = None
+        self.__overbooking = False
+        self.__cleaning_required = False
 
     # incapsulation
     @property
@@ -40,13 +40,13 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         """
         overbooking_possibility = 5  # max number of rooms, that
         # Reservation office may accept reservation for, even if they are taken right now
-        self.free_rooms = self.capacity - self.current_capacity
-        if self.free_rooms >= number_of_rooms > 0:
+        self.__free_rooms = self.__capacity - self.__current_capacity
+        if self.__free_rooms >= number_of_rooms > 0:
             return f'Reservation made on name "{name}" is accepted.'
         elif number_of_rooms <= 0:
             return 'Reservation for negative rooms value cant be made.'
-        elif self.free_rooms < number_of_rooms and number_of_rooms - self.free_rooms <= overbooking_possibility:
-            self.overbooking = True
+        elif self.__free_rooms < number_of_rooms and number_of_rooms - self.__free_rooms <= overbooking_possibility:
+            self.__overbooking = True
             overbooking_possibility -= 1
             return f'Reservation made on name {name} is accepted.'
         else:
@@ -58,10 +58,10 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         Confirms current capacity of the hotel, taking overbooking into account
         Returns: message indicating the current capacity of the hotel
         """
-        if self.overbooking:
-            return f'Current capacity: {self.current_capacity} rooms (excluding overbookings)'
+        if self.__overbooking:
+            return f'Current capacity: {self.__current_capacity} rooms (excluding overbookings)'
         else:
-            return f'Current capacity: {self.current_capacity} rooms'
+            return f'Current capacity: {self.__current_capacity} rooms'
 
     # polimorfizm, encapsulation
     def check_in(self, number_of_rooms: int):
@@ -78,7 +78,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
                     room_to_assign = random.choice(available_rooms)
                     self.__rooms_status[room_to_assign] = 'Occupied'
                     occupied_rooms.append(room_to_assign)
-                    self.current_capacity += 1
+                    self.__current_capacity += 1
                 else:
                     break
         else:
@@ -109,8 +109,8 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
             room_to_vacate = random.choice(occupied_rooms)
             self.__rooms_status[room_to_vacate] = 'Free'
             occupied_rooms.remove(room_to_vacate)
-            self.current_capacity -= 1
-        self.cleaning_required = True
+            self.__current_capacity -= 1
+        self.__cleaning_required = True
         return f'Checked out of {number_of_rooms} rooms.'
 
     # polimorfizm, encapsulation
@@ -118,7 +118,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         """
         Function represent HK service fork. Fridge should be refilled after room has been cleaned
         """
-        if not self.cleaning_required:
+        if not self.__cleaning_required:
             return "Fridge has been refilled."
         else:
             return "Fridge should be refilled after cleaning"
@@ -132,7 +132,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         Returns: str: message indicating that room is ready or not
         """
 
-        if self.__rooms_status[room_number] == "Free" and not self.cleaning_required:
+        if self.__rooms_status[room_number] == "Free" and not self.__cleaning_required:
             return f"Room {room_number} is ready for new guests."
         else:
             return f"Room {room_number} is not yet ready for new guests."
@@ -149,7 +149,7 @@ class MiracleHotel(IHousekeeping, IReception, IReservationOffice):
         if now.hour == 22:
             for room_number, status in self.__rooms_status.items():
                 if status == "Free":
-                    self.cleaning_required = False
+                    self.__cleaning_required = False
                     print(f"Room {room_number} has been cleaned")
             return "All occupied rooms will be cleaned after check out."
         else:
